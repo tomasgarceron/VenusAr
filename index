@@ -111,7 +111,7 @@
       ></a-entity>
       <a-marker
         type="pattern"
-        url="https://cdn.glitch.global/95763434-9f2c-425f-9ca7-70e69fc0a7c4/pattern-VenusQr.patt"
+        url="assets/pattern-VenusQr.png"
       >
         <!-- we use cors proxy to avoid cross-origin problems ATTENTION! you need to set up your server -->
 
