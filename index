@@ -123,7 +123,7 @@
           position="0 0 0"
           rotation="-14.5 -82.9 89.27"
           scale="6 6 6"
-          gltf-model="https://cdn.glitch.me/95763434-9f2c-425f-9ca7-70e69fc0a7c4/Venus.glb?v=1700881586419"
+          gltf-model="glTF"
         ></a-entity>
 
         <a-entity
