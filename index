@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+  <!-- we import arjs version without NFT but with marker + location based support -->
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <body style="margin: 0px; overflow: hidden">
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const boton = document.getElementById("miBoton");
+        const botonesEstado = document.querySelectorAll(".botonEstado");
+
+        const objetos = [
+          "Venus1",
+          "Venus2",
+          "Venus3",
+          "Venus4",
+          "Venus5",
+          "Venus6",
+        ];
+        let estadoActual = 0;
+
+        function cambiarVisibilidad() {
+          const objeto1 = document.getElementById("Venus");
+          const objeto2 = document.getElementById("BrazoDer");
+          const objeto3 = document.getElementById("BrazoIzq");
+          const objeto4 = document.getElementById("BrazoIzqApple");
+          const objeto5 = document.getElementById("BrazoIzqArms");
+          const objeto6 = document.getElementById("BrazosLira");
+
+          switch (estadoActual) {
+            case 0:
+              objeto1.setAttribute("visible", true);
+              objeto2.setAttribute("visible", false);
+              objeto3.setAttribute("visible", false);
+              objeto4.setAttribute("visible", false);
+              objeto5.setAttribute("visible", false);
+              objeto6.setAttribute("visible", false);
+              break;
+
+            case 1:
+              objeto1.setAttribute("visible", true);
+              objeto2.setAttribute("visible", true);
+              objeto3.setAttribute("visible", true);
+              objeto4.setAttribute("visible", false);
+              objeto5.setAttribute("visible", false);
+              objeto6.setAttribute("visible", false);
+              break;
+
+            case 2:
+              objeto1.setAttribute("visible", true);
+              objeto2.setAttribute("visible", true);
+              objeto3.setAttribute("visible", false);
+              objeto4.setAttribute("visible", true);
+              objeto5.setAttribute("visible", false);
+              objeto6.setAttribute("visible", false);
+              break;
+
+            case 3:
+              objeto1.setAttribute("visible", true);
+              objeto2.setAttribute("visible", true);
+              objeto3.setAttribute("visible", false);
+              objeto4.setAttribute("visible", false);
+              objeto5.setAttribute("visible", true);
+              objeto6.setAttribute("visible", false);
+              break;
+
+            case 4:
+              objeto1.setAttribute("visible", true);
+              objeto2.setAttribute("visible", false);
+              objeto3.setAttribute("visible", false);
+              objeto4.setAttribute("visible", false);
+              objeto5.setAttribute("visible", false);
+              objeto6.setAttribute("visible", true);
+              break;
+
+            default:
+              break;
+          }
+        }
+
+        function cambiarEstado(nuevoEstado) {
+          estadoActual = nuevoEstado;
+          cambiarVisibilidad();
+        }
+
+        botonesEstado.forEach((boton, indice) => {
+          boton.addEventListener("click", function () {
+            console.log(`Botón de Estado ${indice + 1} clicado`);
+            cambiarEstado(indice);
+          });
+        });
+
+        cambiarVisibilidad();
+      });
+    </script>
+
+    <a-scene embedded arjs>
+      <a-entity
+        light="color: #BBB; type: ambient"
+        data-aframe-default-light=""
+        aframe-injected=""
+      ></a-entity>
+      <a-entity
+        light="intensity: 10; castShadow: true"
+        target-position="0 -0.10 0"
+        position="0 1.75 1.16"
+        data-aframe-default-light=""
+        aframe-injected=""
+      ></a-entity>
+      <a-marker
+        type="pattern"
+        url="https://cdn.glitch.global/95763434-9f2c-425f-9ca7-70e69fc0a7c4/pattern-VenusQr.patt"
+      >
+        <!-- we use cors proxy to avoid cross-origin problems ATTENTION! you need to set up your server -->
+
+        <!-- Escala para tamaño real "6.5 6.5 6.5" en todos los objetos 3D, fue cambiado para la visualizacion en menor escala 
+          Escala recomendada para tamaño pequeño = 2 en todos los objetos 3D-->
+        <a-entity
+          id="Venus"
+          visible="true"
+          position="0 0 0"
+          rotation="-14.5 -82.9 89.27"
+          scale="6 6 6"
+          gltf-model="https://cdn.glitch.me/95763434-9f2c-425f-9ca7-70e69fc0a7c4/Venus.glb?v=1700881586419"
+        ></a-entity>
+
+        <a-entity
+          id="BrazoDer"
+          visible="false"
+          position="0 0 0"
+          rotation="-14.5 -82.9 89.27"
+          scale="6 6 6"
+          gltf-model="https://cdn.glitch.global/95763434-9f2c-425f-9ca7-70e69fc0a7c4/BrazoDerecho.glb?v=1700881393826"
+        ></a-entity>
+
+        <a-entity
+          id="BrazoIzq"
+          visible="false"
+          position="0 0 0"
+          rotation="-14.5 -82.9 89.27"
+          scale="6 6 6"
+          gltf-model="https://cdn.glitch.global/95763434-9f2c-425f-9ca7-70e69fc0a7c4/BrazoIzq.glb?v=1700883978349"
+        ></a-entity>
+
+        <a-entity
+          id="BrazoIzqApple"
+          visible="false"
+          position="0 0 0"
+          rotation="-14.5 -82.9 89.27"
+          scale="6 6 6"
+          gltf-model="https://cdn.glitch.global/95763434-9f2c-425f-9ca7-70e69fc0a7c4/BrazoIzq_Apple4.glb?v=1700942092609"
+        ></a-entity>
+
+        <a-entity
+          id="BrazoIzqArms"
+          visible="false"
+          position="0 0 0"
+          rotation="-14.5 -82.9 89.27"
+          scale="6 6 6"
+          gltf-model="https://cdn.glitch.me/95763434-9f2c-425f-9ca7-70e69fc0a7c4/BrazoIzq_Arms.glb?v=1700882028292"
+        ></a-entity>
+
+        <a-entity
+          id="BrazosLira"
+          visible="false"
+          position="0 0 0"
+          rotation="-14.5 -82.9 89.27"
+          scale="6 6 6"
+          gltf-model="https://cdn.glitch.global/95763434-9f2c-425f-9ca7-70e69fc0a7c4/Brazos_Lira.glb?v=1700884970513"
+        ></a-entity>
+      </a-marker>
+
+      <a-entity camera> </a-entity>
+    </a-scene>
+    <div class="contenedor">
+      <button id="btnEstado1" class="botonEstado">Original</button>
+      <button id="btnEstado2" class="botonEstado">Reconstruida</button>
+      <button id="btnEstado3" class="botonEstado">Discordia</button>
+      <button id="btnEstado4" class="botonEstado">Amor y Guerra</button>
+      <button id="btnEstado5" class="botonEstado">Musica</button>
+    </div>
+  </body>
+</html>
