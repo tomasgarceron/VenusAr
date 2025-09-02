@@ -1,167 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-    <title>Prueba sin marcador</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-    <style>
-      body {
-        margin: 0;
-        overflow: hidden;
-      }
-
-      .contenedor {
-        position: absolute;
-        bottom: 10px;
-        left: 0;
-        right: 0;
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        z-index: 1000;
-      }
-
-      .botonEstado {
-        font-size: 12px;
-        padding: 6px 10px;
-        margin: 4px;
-        background-color: #333;
-        color: white;
-        border: none;
-        border-radius: 5px;
-      }
-    </style>
+    <title>Test A-Frame AR.js</title>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/2.2.1/aframe/build/aframe-ar.js"></script>
   </head>
-  <body>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const botonesEstado = document.querySelectorAll(".botonEstado");
+  <body style="margin:0; overflow:hidden;">
 
-        let estadoActual = 0;
+    <!-- Escena con AR.js -->
+    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: true;">
 
-        function cambiarVisibilidad() {
-          const objeto1 = document.getElementById("Venus");
-          const objeto2 = document.getElementById("BrazoDer");
-          const objeto3 = document.getElementById("BrazoIzq");
-          const objeto4 = document.getElementById("BrazoIzqApple");
-          const objeto5 = document.getElementById("BrazoIzqArms");
-          const objeto6 = document.getElementById("BrazosLira");
+      <!-- 📌 (1) Objeto libre en la escena, debería aparecer siempre -->
+      <a-box position="0 1 -3" color="red" depth="1" height="1" width="1"></a-box>
 
-          objeto1.setAttribute("visible", true);
-          objeto2.setAttribute("visible", false);
-          objeto3.setAttribute("visible", false);
-          objeto4.setAttribute("visible", false);
-          objeto5.setAttribute("visible", false);
-          objeto6.setAttribute("visible", false);
+      <!-- 📌 (2) Objeto con marcador preset "hiro" -->
+      <a-marker preset="hiro">
+        <a-sphere position="0 0.5 0" radius="0.5" color="blue"></a-sphere>
+      </a-marker>
 
-          switch (estadoActual) {
-            case 1:
-              objeto2.setAttribute("visible", true);
-              objeto3.setAttribute("visible", true);
-              break;
-            case 2:
-              objeto2.setAttribute("visible", true);
-              objeto4.setAttribute("visible", true);
-              break;
-            case 3:
-              objeto2.setAttribute("visible", true);
-              objeto5.setAttribute("visible", true);
-              break;
-            case 4:
-              objeto6.setAttribute("visible", true);
-              break;
-          }
-        }
+      <!-- 📌 (3) Objeto con marcador barcode (value=5) -->
+      <a-marker type="barcode" value="5">
+        <a-cylinder position="0 0.5 0" radius="0.3" height="1" color="green"></a-cylinder>
+      </a-marker>
 
-        function cambiarEstado(nuevoEstado) {
-          estadoActual = nuevoEstado;
-          cambiarVisibilidad();
-        }
-
-        botonesEstado.forEach((boton, indice) => {
-          boton.addEventListener("click", function () {
-            cambiarEstado(indice);
-          });
-        });
-
-        cambiarVisibilidad();
-      });
-    </script>
-
-    <a-scene>
-      <!-- Luces -->
-      <a-entity light="type: ambient; color: #888"></a-entity>
-      <a-entity light="type: directional; intensity: 0.8" position="1 2 1"></a-entity>
-
-      <!-- Modelos -->
-      <a-entity
-        id="Venus"
-        position="0 0 0"
-        rotation="0 0 0"
-        scale="2 2 2"
-        visible="true"
-        gltf-model="https://cdn.glitch.me/95763434-9f2c-425f-9ca7-70e69fc0a7c4/Venus.glb?v=1700881586419"
-      ></a-entity>
-
-      <a-entity
-        id="BrazoDer"
-        visible="false"
-        position="0 0 0"
-        rotation="0 0 0"
-        scale="2 2 2"
-        gltf-model="https://cdn.glitch.global/95763434-9f2c-425f-9ca7-70e69fc0a7c4/BrazoDerecho.glb?v=1700881393826"
-      ></a-entity>
-
-      <a-entity
-        id="BrazoIzq"
-        visible="false"
-        position="0 0 0"
-        rotation="0 0 0"
-        scale="2 2 2"
-        gltf-model="https://cdn.glitch.global/95763434-9f2c-425f-9ca7-70e69fc0a7c4/BrazoIzq.glb?v=1700883978349"
-      ></a-entity>
-
-      <a-entity
-        id="BrazoIzqApple"
-        visible="false"
-        position="0 0 0"
-        rotation="0 0 0"
-        scale="2 2 2"
-        gltf-model="https://cdn.glitch.global/95763434-9f2c-425f-9ca7-70e69fc0a7c4/BrazoIzq_Apple4.glb?v=1700942092609"
-      ></a-entity>
-
-      <a-entity
-        id="BrazoIzqArms"
-        visible="false"
-        position="0 0 0"
-        rotation="0 0 0"
-        scale="2 2 2"
-        gltf-model="https://cdn.glitch.me/95763434-9f2c-425f-9ca7-70e69fc0a7c4/BrazoIzq_Arms.glb?v=1700882028292"
-      ></a-entity>
-
-      <a-entity
-        id="BrazosLira"
-        visible="false"
-        position="0 0 0"
-        rotation="0 0 0"
-        scale="2 2 2"
-        gltf-model="https://cdn.glitch.global/95763434-9f2c-425f-9ca7-70e69fc0a7c4/Brazos_Lira.glb?v=1700884970513"
-      ></a-entity>
-
-      <!-- Cámara -->
-      <a-entity position="0 1.6 4">
-        <a-camera></a-camera>
-      </a-entity>
+      <!-- Cámara AR -->
+      <a-entity camera></a-entity>
     </a-scene>
 
-    <!-- Botones -->
-    <div class="contenedor">
-      <button class="botonEstado">Original</button>
-      <button class="botonEstado">Reconstruida</button>
-      <button class="botonEstado">Discordia</button>
-      <button class="botonEstado">Amor y Guerra</button>
-      <button class="botonEstado">Música</button>
-    </div>
   </body>
 </html>
