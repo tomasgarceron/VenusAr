@@ -104,6 +104,18 @@
     </script>
 
     <a-scene embedded arjs>
+
+      <a-entity light="type: ambient; color: #ffffff; intensity: 1"></a-entity>
+
+  <!-- Luz direccional: simula el sol -->
+  <a-entity light="type: directional; color: #ffffff; intensity: 0.9"
+            position="2 4 2"></a-entity>
+
+  <!-- Luz puntual: foco extra cerca de la escultura -->
+  <a-entity light="type: point; intensity: 1.5; distance: 20; decay: 2; color: #ffffff"
+            position="0 3 2"></a-entity>
+
+      
       <a-marker type="pattern" url="assets/pattern-VenusQr.patt">
         <a-entity
           id="Venus"
