@@ -109,7 +109,7 @@
 
   <!-- Luz direccional: simula el sol -->
   <a-entity light="type: directional; color: #ffffff; intensity: 2"
-            position="2 2 2"></a-entity>
+            position="0 2 2"></a-entity>
 
   <!-- Luz puntual: foco extra cerca de la escultura -->
   <a-entity light="type: point; intensity: 1.5; distance: 20; decay: 2; color: #ffffff"
@@ -122,8 +122,9 @@
           visible="true"
           position="0 0 0"
           rotation="-14.5 -82.9 89.27"
-          scale="6 6 6"
+          scale="2 2 2"
           gltf-model="assets/Venus.glb"
+          material="shader: flat"
         ></a-entity>
 
         <a-entity
